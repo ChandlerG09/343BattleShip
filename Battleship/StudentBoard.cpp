@@ -6,29 +6,29 @@
 
 Board::Board(){
 	Board B;
-	B.grid = new int[WIDTH][HEIGHT];
+	B.grid = new int[100];
 	B.visible = false;
-	return Board
+	
 }
 
 Board::Board(const Board& other){
-	Board = other;
-	return Board;
+	Board B;
+	B = other;
 }
 
 Board& Board::operator=(const Board& other){
-	Board = other;
-	return Board&;
+	Board B;
+	B = other;
+	return B;
 }
 
 Board::~Board(){
-
-	return Board;
+	Board B;
 }
 
 void Board::setVisible(bool v){
-
-	Board.visible = v;
+	Board B;
+	B.visible = v;
 }
 
 int& Board::Internal::operator[](int index){
