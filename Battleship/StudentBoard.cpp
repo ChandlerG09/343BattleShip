@@ -4,33 +4,46 @@
 #include <algorithm>
 #include <iostream>
 
+
+//Create generic board WORKING
 Board::Board(){
 	Board B;
-	B.grid = new int[100];
+	B.grid = *(new int[WIDTH][HEIGHT]);
+	
+	//Fill grid with 0s
+	for(int i = 0; i<HEIGHT; i++){
+		for (int j=0; j<WIDTH; j++){
+			B[i][j] = 0;
+		}
+	}
+
 	B.visible = false;
 	
 }
 
+//Create a copy of the board passed in PROB WORKING
 Board::Board(const Board& other){
-	Board B;
-	B = other;
+	Board B(other);
 }
 
+//Copy NOT WORKING
 Board& Board::operator=(const Board& other){
-	Board B;
-	B = other;
+	Board B(other);
 	return B;
 }
 
+//Deconstructor NOT WORKING
 Board::~Board(){
-	Board B;
+	delete[] Board;
 }
 
+//Set Visibility of Board PROBABLY WORKING
 void Board::setVisible(bool v){
 	Board B;
 	B.visible = v;
 }
 
+//GOOD
 int& Board::Internal::operator[](int index){
 
 	if(index >= WIDTH){
@@ -39,6 +52,7 @@ int& Board::Internal::operator[](int index){
         return _grid[index];
 }
 
+//GOOD
 Board::Internal Board::operator[](int index){
 
 	if(index >= HEIGHT){
@@ -47,9 +61,12 @@ Board::Internal Board::operator[](int index){
         return Board::Internal(grid+(index * WIDTH));
 }
 
+//Idk what this does
 std::ostream& operator<<(std::ostream& os, Board const& b){
+//	return os;
 }
 
+//Count of something
 int Board::count() const{
 
 	return 0;

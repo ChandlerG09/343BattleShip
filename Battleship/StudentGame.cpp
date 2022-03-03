@@ -9,18 +9,19 @@
  * Constructor will create the ships vector and add ships to it.
  */
 Game::Game(){
-	Ship Ship(5, "Carrier", 0) Carrier;
-	Ship(4, "Battleship", 0) Battleship;
-	Ship(3, "Destroyer", 0) Destroyer;
-	Ship(3, "Submarine", 0) Submarine;
-	Ship(2, "Patrol Boat", 0) PatrolBoat;
-	Ship* shipVec = new Ship[5];
+	Ship Carrier(5, "Carrier", 0) : spaces{_spaces}, name(_name), chr{_chr} { };
+	Ship Battleship(4, "Battleship", 0) : spaces{_spaces}, name(_name), chr{_chr} { };
+	Ship Destroyer(3, "Destroyer", 0);
+	Ship Submarine(3, "Submarine", 0);
+	Ship PatrolBoat(2, "Patrol Boat", 0);
+	
+	
+	std::vector<Ship> ships;
+	
+	ships.push_back(Carrier);
 
-	shipVec[0] = Carrier;
-	shipVec[1] = Battleship;
-	shipVec[2] = Destroyer;
-	shipVec[3] = Submarine;
-	shipVec[4] = PatrolBoat;
+//	it = ships.begin();
+//	it = ships.insert(it, Carrier);
 }
 
 /**
