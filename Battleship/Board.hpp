@@ -3,6 +3,7 @@
 
 #include "BoardValues.hpp"
 #include <iostream>
+#include <vector>
 
 #define HEIGHT 10
 #define WIDTH 10
@@ -27,11 +28,13 @@ class Board {
 
 			private:
 				int* _grid;
+			//	std::vector<std::vector<int*>>grid;
 		};
 		Internal operator[](int index);
 
 	private:
 		int* grid;
+	//	std::vector<std::vector<int*>>grid;
 		bool visible;
 	
 	friend std::ostream& operator<<(std::ostream& os, Board const& b);

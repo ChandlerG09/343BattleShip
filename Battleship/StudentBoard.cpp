@@ -3,19 +3,30 @@
 
 #include <algorithm>
 #include <iostream>
+#include <vector>
 
-
-//Create generic board WORKING
+using namespace std;
+//Create generic board
 Board::Board(){
+
 	Board B;
-	B.grid = *(new int[WIDTH][HEIGHT]);
+	int gameBoard[WIDTH][HEIGHT];
+
+	std::vector<std::vector<int*>> vect = { } ;
+
+	//vect = new int[WIDTH][HEIGHT];
+	
+//	B.grid = new int[WIDTH];
 	
 	//Fill grid with 0s
 	for(int i = 0; i<HEIGHT; i++){
 		for (int j=0; j<WIDTH; j++){
-			B[i][j] = 0;
+			vect[i][j] = 0;
 		}
 	}
+
+	*B.grid = &gameBoard;
+
 
 	B.visible = false;
 	
@@ -28,7 +39,18 @@ Board::Board(const Board& other){
 
 //Copy NOT WORKING
 Board& Board::operator=(const Board& other){
-	Board B(other);
+	
+	Board B;
+	B.grid = *(new int[WIDTH][HEIGHT]);
+
+	//Copy the grid over
+	for(int i = 0; i<HEIGHT; i++){
+		for (int j=0; j<WIDTH; j++){
+			other[i][j] = B[i][j];
+		}
+	}
+	B.visible = other.visible;
+	B(other);
 	return B;
 }
 
