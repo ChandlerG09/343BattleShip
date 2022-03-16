@@ -22,19 +22,17 @@ class Board {
 		class Internal {
 			public:
 			Internal(int* _g) {
-				_grid = _g;
+				grid = _g;
 			}
 			int& operator[](int index);
 
 			private:
-				int* _grid;
-			//	std::vector<std::vector<int*>>grid;
+				int* grid;
 		};
 		Internal operator[](int index);
 
 	private:
 		int* grid;
-	//	std::vector<std::vector<int*>>grid;
 		bool visible;
 	
 	friend std::ostream& operator<<(std::ostream& os, Board const& b);

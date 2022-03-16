@@ -9,16 +9,10 @@
  * Constructor will create the ships vector and add ships to it.
  */
 Game::Game(){
-	Ship Carrier(5, "Carrier", 0) : spaces{_spaces}, name(_name), chr{_chr} { };
-	Ship Battleship(4, "Battleship", 0) : spaces{_spaces}, name(_name), chr{_chr} { };
-	Ship Destroyer(3, "Destroyer", 0);
-	Ship Submarine(3, "Submarine", 0);
-	Ship PatrolBoat(2, "Patrol Boat", 0);
 	
 	
 	std::vector<Ship> ships;
 	
-	ships.push_back(Carrier);
 
 //	it = ships.begin();
 //	it = ships.insert(it, Carrier);
@@ -48,6 +42,7 @@ void Game::placeShipsPC(){
  * at a particular spot with a particular direction.
  */
 bool Game::place(const int& x, const int& y, Direction d, const Ship& s, Board& b){
+	return true;
 }
 
 /**
