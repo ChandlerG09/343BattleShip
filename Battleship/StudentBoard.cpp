@@ -8,75 +8,49 @@
 //using namespace std;
 //Create generic board
 Board::Board(){
+		
+	//Allocate Memory
+	this->grid = new int[WIDTH*HEIGHT];	
 	
-	Board b[WIDTH][HEIGHT];
-
-	grid = new int[WIDTH*HEIGHT];	
-	
-	//Fill grid with 0s
-	for(int i = 0; i<HEIGHT*WIDTH; i++){
-		grid[i] = 0;
-		std::cout << grid[i];
-		if(i%WIDTH == 0)
-			std::cout << "\n";
-		else
-			std::cout <<" ";
+	//Fill the grid with Empty Values	
+	for(int i = 0; i<WIDTH*HEIGHT; i++){
+		this->grid[i] = EMPTY;
 	}
-
-//	grid = b;
-
-	visible = false;
-	
 }
 
-//Create a copy of the board passed in NOT WORKING
+//Create a copy of the board passed in
 Board::Board(const Board& other){
-
-	this->grid=new int;
-
-/*	for(int i =0; i<WIDTH; i++){
-		for(int j = 0; j<HEIGHT; j++){
-			this->grid[i][j] = other.grid[i][j];
-		}
+	
+	//Create the new Board Object
+	Board b;	
+	
+	//Create new space for the grid so they aren't the same
+	b.grid=new int[WIDTH*HEIGHT];
+	
+	//Copy the values of the old Board into the new one	
+	for(int i = 0; i < WIDTH*HEIGHT; i++){
+		b.grid[i] = this->grid[i];
 	}
-	this->grid = other.grid;
-*/	
-//	this = other
-	this->visible = other.visible;
-
 }
 
-//Copy Operator  NOT WORKING
-Board& Board::operator=(const Board& other){
+//Copy Operator  PROB WORKING
+Board& Board::operator=(Board& other){
 	
-	//Board B;
-	//B.grid = *(new int[WIDTH][HEIGHT]);
-	this->grid = new int[WIDTH*HEIGHT];
-	this->grid = other.grid;
-	this->visible = other.visible;
-	//std::swap(other.grid, this->grid);
-	//std::swap(other.visible, this->visible);
+	std::swap(this->grid, other.grid);
+	std::swap(this->visible,  other.visible);
 	
-	//Copy the grid over
-	/*for(int i = 0; i<HEIGHT; i++){
-		for (int j=0; j<WIDTH; j++){
-			other[i][j] = B[i][j];
-		}
-	}
-	*/
-	//B.visible = other.visible;
-	//B(other);
 	return *this;
 }
 
-//Deconstructor NOT WORKING
+//Deconstructor
 Board::~Board(){
 	delete[] this->grid;
 }
 
-//Set Visibility of Board PROBABLY WORKING
+//Set Visibility of Board
 void Board::setVisible(bool v){
-	visible = v;
+
+	this->visible = v;
 }
 
 //GOOD
@@ -99,17 +73,48 @@ Board::Internal Board::operator[](int index){
 
 //Print
 std::ostream& operator<<(std::ostream& os, Board const& b){
-	std::cout<< "Test";
+
+	Board printed = Board();
+	printed.grid = b.grid;	
+
+	for(int i = 0; i<HEIGHT; i++){
+		for(int j = 0; j<WIDTH; j++){
+			if(printed[j][i] == EMPTY){
+				os<<"-\t";
+			}
+			else if(printed[j][i] == MISS){
+				os<<"M\t";
+			}
+			else if(printed[j][i] == HIT){
+				os<<"H\t";
+			}
+			else{
+				os<<printed[j][i] << "\t";
+			}
+		}
+		os<<"\n";
+	}
+
 	return os;
 }
 
-//Count of something
+//Count of hits on the board
 int Board::count() const{
+	
+	int count = 0;
 
-	return 0;
+	//Go through the entire Grid and get the total
+	for(int i =0; i<WIDTH*HEIGHT; i++){
+		if(this->grid[i] == HIT)
+			 count++;
+	}
+	return count;
 }
 
 bool Board::operator< (const Board& other){
+	
+	if(this->count() < other.count())
+		return true;
 
-	return true;
+	return false;
 }

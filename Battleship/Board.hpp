@@ -13,7 +13,7 @@ class Board {
 	public:
 		Board();
 		Board(const Board &other);
-		Board& operator=(const Board& other);
+		Board& operator=(Board& other);
 		int count() const;
 		bool operator< (const Board& other);
 		~Board();
