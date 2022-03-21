@@ -5,6 +5,13 @@
 #include <iostream>
 #include <random>
 #include <time.h>
+
+/*
+ *This class is used to run the game Battleship from the command line
+ *@authors Chandler Glowicki and Liam Mazure
+ *@version Winter 2022
+ */
+
 /**
  * Constructor will create the ships vector and add ships to it.
  */
@@ -64,9 +71,16 @@ void Game::beginGame(){
  */
 void Game::placeShips(){
 	
+	//X position
 	int locx;
+
+	//Y Position
 	int locy;
+
+	//roation of ship represented as an int
 	int rotation;
+
+	//Used to tell if ship is okay to be placed
 	bool placeOk = false;
 
 	//Loop through for all ships
@@ -119,12 +133,21 @@ void Game::placeShips(){
  * Handle the computer placing ships.
  */
 void Game::placeShipsPC(){
-
+	
+	//X position
 	int locx;
+	
+	//Y position
 	int locy;
+
+	//'Random' number given by the system time
 	int num = clock();
+
+	//update X and Y position based on num
 	locx = num%(WIDTH-1);
 	locy = num*2%(HEIGHT-1);
+
+	//Direction the ship should be placed in
 	Direction direction;
 	for(int i=0; i< ships.size(); i++){
 
@@ -212,7 +235,8 @@ bool Game::place(const int& x, const int& y, Direction d, const Ship& s, Board& 
 void Game::run(){
 	//Run until count of either board is equal to the amount needed to win
 	while(player.count() != 17 || computer.count() !=17){
-
+		
+		//Let Player and the computer go until the game is over
 		humanTurn();
 		computerTurn();
 		
@@ -287,10 +311,13 @@ void Game::humanTurn(){
 
 void Game::computerTurn(){
 	
+	//'Random' number given by system time
 	int num = clock();
-
+	
+	//X and Y pos based on num so they are random
 	int xval = num%WIDTH;
 	int yval = num*2%HEIGHT;
+
 	//Randomly selects a spot to fire on and checks whats there and updates board
 	if(player[xval][yval] != EMPTY && player[xval][yval] != HIT && player[xval][yval] != MISS){
 		

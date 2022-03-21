@@ -1,11 +1,16 @@
 #include "Board.hpp"
 #include "BoardValues.hpp"
-
 #include <algorithm>
 #include <iostream>
 #include <vector>
 
-//using namespace std;
+/*
+ *This class is used to create a Board for the game Battleship
+ *Each Board keeps track of the grid as well as what spots have been fired on
+ *
+ * @author Chandler Glowicki and Liam Mazure
+ * @version Winter 2022
+ */
 //Create generic board
 Board::Board(){
 		
